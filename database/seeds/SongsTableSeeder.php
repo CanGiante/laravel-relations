@@ -25,7 +25,7 @@ class SongsTableSeeder extends Seeder
               'rap',
               'trap',
             ]);
-            $new_song->album_id = $faker->numberBetween($min = 1, $max = 3);
+            $new_song->album_id = $i + 1;
             $new_song->save();
           }
         }
