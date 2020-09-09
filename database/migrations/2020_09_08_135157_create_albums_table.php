@@ -19,7 +19,6 @@ class CreateAlbumsTable extends Migration
           $table->string('title');
           $table->string('artist');
           $table->year('year');
-          $table->string('cover');
         });
     }
 

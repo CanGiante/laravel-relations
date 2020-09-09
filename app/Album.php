@@ -10,10 +10,13 @@ class Album extends Model
       'title',
       'artist',
       'year',
-      'cover',
     ];
 
     public function songs() {
       return $this->hasMany('App\Song');
+    }
+
+    public function cover() {
+      return $this->hasOne('App\Cover');
     }
 }

@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Song extends Model
+class Cover extends Model
 {
     protected $fillable = [
-      'title',
-      'genre',
+      'url',
       'album_id',
     ];
 
