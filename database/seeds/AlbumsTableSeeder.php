@@ -18,6 +18,7 @@ class AlbumsTableSeeder extends Seeder
           $new_album->title = $faker->word;
           $new_album->artist = $faker->name;
           $new_album->year = $faker->year();
+          $new_album->cover = $faker->imageUrl();
           $new_album->save();
         }
     }
