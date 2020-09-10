@@ -19,4 +19,12 @@ class Album extends Model
     public function cover() {
       return $this->hasOne('App\Cover');
     }
+
+    // public function tags() {
+    //   return $this->hasMany('App\Tag');
+    // }
+
+    public function tags() {
+      return $this->belongsToMany('App\Tag');
+    }
 }

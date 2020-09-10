@@ -21,9 +21,9 @@ class CreateSongsTable extends Migration
             $table->unsignedBigInteger('album_id');
             $table->foreign('album_id')
                   ->references('id')
-                  ->on('albums')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+                  ->on('albums');
+                  // ->onUpdate('cascade')
+                  // ->onDelete('cascade')
         });
     }
 
