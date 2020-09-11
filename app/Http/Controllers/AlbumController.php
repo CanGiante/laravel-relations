@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Album;
+// use App\User;
+use App\Tag;
+use Carbon\Carbon;
 
 class AlbumController extends Controller
 {
@@ -55,10 +58,18 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+     public function edit(Album $album)
+     {
+         // $users = User::all();
+         $tags = Tag::all();
+
+         return view('albums.edit', [
+           'album' => $album,
+           // 'users' => $users,
+           'tags' => $tags,
+         ]);
+     }
+
 
     /**
      * Update the specified resource in storage.
@@ -67,10 +78,23 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+     public function update(Request $request, Album $album)
+     {
+         $data = $request->all();
+
+         if (isset($data['tags'])) {
+           $album->tags()->sync($data['tags']);
+         } else {
+           $album->tags()->detach();
+         }
+
+         // Salvo la data e ora attuale in updated_at
+         $album->updated_at = Carbon::now();
+         $album->update($data);
+
+        return redirect()->route('albums.show', $album);
+     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +102,12 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+     public function destroy(Album $album)
+     {
+         $album->tags()->detach();
+         $album->delete();
+
+        return redirect()->route('albums.index');
+     }
+
 }

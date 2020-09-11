@@ -19,6 +19,9 @@ class AlbumsTableSeeder extends Seeder
           $new_album->artist = $faker->name;
           $new_album->year = $faker->year();
           $new_album->save();
+
+          $new_album->tags()->attach(rand(1,4));
+
         }
     }
 }

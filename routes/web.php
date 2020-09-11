@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::resource('albums', 'AlbumController');
+
+
+// Route::get('users-posts', 'UserController@index');
